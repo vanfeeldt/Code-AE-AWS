@@ -1,0 +1,106 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input type="text" class="form-control" placeholder="Buscar precio combustible.." />
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row animated fadeIn fast" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn fast" *ngIf="!cargando">
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Precios Combustible :<span class="label label-info">
+                                {{totalPrecios}}</span></h4>
+                        <h6 class="card-subtitle">Precios registrados en la aplicación</h6>
+                    </div>
+
+                    <div class="col">
+                        <div class="text-right">
+                            <button class="btn btn-primary">
+                                <i class="fa fa-file-alt"></i>
+                                Crear Nuevo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Match</th>
+                                <th>Combustible</th>
+                                <th>Dia</th>
+                                <th>Vigencia Inicio</th>
+                                <th>Vigencia Fin</th>
+                                <th>Aeropuerto</th>
+                                <th>Nombre Aeropuerto</th>
+                                <th>Precio con Descuento</th>
+                                <th>Precio sin Descuento</th>
+                                <th>Precio Galon Mex</th>
+                                <th>Precio Dólar</th>
+
+
+                                <th class="text-nowrap">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of precios">
+
+                                <td>{{p.match}}</td>
+                                <td>{{p.combustible}}</td>
+                                <td>{{p.dia}}</td>
+                                <td>{{p.vigenciaInicio}}</td>
+                                <td>{{p.vigenciaFin}}</td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Aeropuerto"
+                                        [(ngModel)]="p.aeropuerto" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Nombre Aeropuerto"
+                                        [(ngModel)]="p.nombreAeropuerto" />
+                                </td>
+
+                                <td>{{p.precioConDescuento}}</td>
+                                <td>{{p.precioSinDescuento}}</td>
+                                <td>{{p.precioGalMex}}</td>
+                                <td>{{p.precioDolar}}</td>
+
+
+
+                                <td class="text-nowrap">
+                                    <a href="#" data-toggle="tooltip" data-original-title="Editar"> <i
+                                            class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                    <a href="#" data-toggle="tooltip" data-original-title="Borrar"> <i
+                                            class="fa fa-close text-danger"></i> </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input type="text" class="form-control" placeholder="Buscar precio aterrizaje.." />
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="row animated fadeIn fast" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn fast" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Precios Aterrizaje México :<span class="label label-info">
+                                {{precios.length}}</span></h4>
+                        <h6 class="card-subtitle">Precios registrados en la aplicación</h6>
+                    </div>
+
+                    <div class="col">
+                        <div class="text-right">
+                            <button class="btn btn-primary">
+                                <i class="fa fa-file-alt"></i>
+                                Crear Nuevo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Aterrizaje</th>
+                                <th>Match</th>
+                                <th>Nacional/Internacional</th>
+                                <th>Horario</th>
+                                <th>Precio</th>
+
+                                <th class="text-nowrap w100">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of precios">
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Aterrizaje"
+                                        [(ngModel)]="p.aterrizaje" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Match" [(ngModel)]="p.match" />
+                                </td>
+                                <td><input type="text" class="form-control" placeholder="Nacional/Internacional"
+                                        [(ngModel)]="p.nacInt" />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Horario"
+                                        [(ngModel)]="p.horario" />
+                                </td>
+
+                                <td>
+                                    <input type="number" class="form-control" placeholder="Precio"
+                                        [(ngModel)]="p.precio  " />
+                                </td>
+
+
+
+                                <td class="text-nowrap text-center">
+                                    <a (click)="guardarCambios(p)" data-toggle="tooltip" class="cursor"
+                                        data-original-title="Guardar">
+                                        <i class="fa fa-pencil text-inverse m-r-10"></i>
+                                    </a>
+                                    <a (click)="eliminarCambios(p)" data-toggle="tooltip" class="cursor"
+                                        data-original-title="Borrar">
+                                        <i class="fa fa-close text-danger"></i>
+                                    </a>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

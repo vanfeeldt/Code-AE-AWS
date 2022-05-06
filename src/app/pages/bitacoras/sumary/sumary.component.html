@@ -1,0 +1,88 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input type="text" class="form-control" placeholder="Buscar matrícula..." />
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row animated fadeIn fast" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn fast" *ngIf="!cargando">
+
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Sumary : <span class="label label-info">{{totalSumary}}</span></h4>
+                <h6 class="card-subtitle">Vuelos registrados en la aplicación</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Matrícula</th>
+                                <th>Clave</th>
+                                <th>Fecha UTC</th>
+                                <th>Bitácora</th>
+                                <th>#OP/Tramo</th>
+                                <th>Número de Vuelo</th>
+                                <th>Origen</th>
+                                <th>Destino</th>
+                                <th>Origen-Destino</th>
+                                <th>Cliente</th>
+                                <th>Ciclos</th>
+                                <th>Identificador</th>
+                                <th>Operacion Completa</th>
+
+                                <th class="text-nowrap">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let sumary of sumaryData">
+                                <td>{{sumary.matricula}}</td>
+                                <td>{{sumary.clave}}</td>
+                                <td>{{sumary.fecha}}</td>
+                                <td>{{sumary.bitacora}}</td>
+                                <td>{{sumary.tramo}}</td>
+                                <td>{{sumary.numVuelo}}</td>
+                                <td><span class="label label-success">{{sumary.origen}}</span> </td>
+                                <td><span class="label label-danger">{{sumary.destino}}</span> </td>
+                                <td><span class="label label-info">{{sumary.origenDestino}}</span> </td>
+                                <td>{{sumary.cliente}}</td>
+                                <td>{{sumary.ciclos}}</td>
+                                <td>{{sumary.identificador}}</td>
+                                <td *ngIf="sumary.operacion === 1 ; else incompleta"><span
+                                        class="label label-success">Completa</span> </td>
+
+                                <ng-template #incompleta>
+                                    <td><span class="label label-danger">Incompleta</span> </td>
+                                </ng-template>
+
+
+
+                                <td class="text-nowrap">
+                                    <a href="#" data-toggle="tooltip" data-original-title="Editar"> <i
+                                            class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                    <a href="#" data-toggle="tooltip" data-original-title="Borrar"> <i
+                                            class="fa fa-close text-danger"></i> </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>

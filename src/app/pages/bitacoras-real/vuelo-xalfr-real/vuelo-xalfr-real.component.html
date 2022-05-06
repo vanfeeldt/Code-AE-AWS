@@ -1,0 +1,81 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input type="text" class="form-control" placeholder="Buscar por bitacora.."
+                    (keyup)="buscar(txtTermino.value)" #txtTermino />
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row animated fadeIn fast" *ngIf="cargando">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn fast" *ngIf="!cargando">
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Bitacora estimado vuelo XA-LFR : <span
+                        class="label label-info">{{totalVuelos}}</span>
+                </h4>
+                <h6 class="card-subtitle">Vuelos XA-LFR registrados en la aplicación</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered  table-hover">
+                        <thead>
+                            <tr>
+                                <th>Bitacora</th>
+                                <th>Operación</th>
+                                <th>Pierna</th>
+                                <th>Fecha</th>
+                                <th>FLT</th>
+                                <th>Oringen </th>
+                                <th>Destino </th>
+
+                                <th class="text-nowrap">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let vuelo of xalfr">
+                                <td>{{vuelo.bitacora}}</td>
+                                <td>{{vuelo.operacion}}</td>
+                                <td>{{vuelo.leg}}</td>
+                                <td>{{vuelo.fecha }}</td>
+                                <td>{{vuelo.flt}}</td>
+                                <td><span class="label label-success">{{vuelo.from}}</span> </td>
+                                <td><span class="label label-danger">{{vuelo.to}}</span> </td>
+
+
+                                <td class="text-nowrap">
+                                    <a href="#" data-toggle="tooltip" data-original-title="Editar"> <i
+                                            class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                    <a href="#" data-toggle="tooltip" data-original-title="Borrar"> <i
+                                            class="fa fa-close text-danger"></i> </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div *ngIf="txtTermino.value.length===0">
+                    <button (click)="cambiarPagina(-10)" class="btn btn-secondary">Anterior</button>
+                    &nbsp;
+                    <button (click)="cambiarPagina(10)" class="btn btn-secondary">Siguiente</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
