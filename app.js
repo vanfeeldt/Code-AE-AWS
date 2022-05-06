@@ -1,14 +1,23 @@
 'use stritct'
 
-require('dotenv').config();
+//Configuracion para AWS dependencias .ALAN PEREZ
+const express = require('express'); //Famework para la infrestuctura web
+const fs = require('fs'); //Modulo para Trabajar con el sistema  de archivos de SO
+const http = require('http'); //Para trabajar con el servidor http
+const https = require('https'); //Para trabajar con el servidor https
+const helmet = require('helmet'); //ayuda a proteger la aplicacion
+var compression = require('compression');//Para comprimir las respuestas 
+require('dotenv').config(); //Uso y configuracion de la svariables de entorno 
+const cors = require('cors'); //Para habilitar  CORS (en caso de ser necesario)
 
-const express = require('express');
-const cors = require('cors');
+//require('dotenv').config();
+
+//const express = require('express');
+//const cors = require('cors');
 
 const { dbConnection } = require('./database/config');
 
 const { ejecutarJob } = require('./job/index');
-
 
 
 //Crear el servidor de express
@@ -16,6 +25,14 @@ const app = express();
 
 //confi CORS midleware
 app.use(cors());
+
+//configuracion para AWS
+app.use(helmet());
+app.use(compression());
+
+//Servidor HTTP
+const serverHttp = 
+
 
 //Lectura y parseo del body antes de las rutas
 
